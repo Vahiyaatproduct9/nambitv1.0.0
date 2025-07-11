@@ -1,0 +1,46 @@
+.container {
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding: 20px 10px;
+    filter: contrast(0.8);
+    ;
+    background-image: url('../../public/table.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+
+    .leftContainer {
+        max-width: 600px;
+
+        h1 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Ancizar Sans', sans-serif;
+        }
+
+        p {
+            max-width: 80%;
+            font-size: 0.9rem;
+            font-family: 'Ancizar Sans', sans-serif;
+            margin-top: 5px;
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+
+            button {
+                margin-top: 10px;
+                font-family: 'Ancizar Sans', sans-serif;
+                background: orange;
+                border-radius: 40px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                padding: 10px 20px;
+            }
+        }
+    }
+}

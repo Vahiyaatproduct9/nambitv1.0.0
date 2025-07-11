@@ -1,0 +1,181 @@
+
+const NEXT_PUBLIC_SUPABASE_URL = 'https://dxqespjfgbivjfzmflpi.supabase.co'
+const NEXT_PUBLIC_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cWVzcGpmZ2Jpdmpmem1mbHBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyMTY0MDIsImV4cCI6MjA2Nzc5MjQwMn0.Weqxs05W_3_S249Go7yEwacgGFlROgkvjiO9cvBQne0'
+import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const items = [
+    //   {
+    //     name: "Veg Momo",
+    //     price: 20,
+    //     description: "Steamed dumplings stuffed with seasoned cabbage and veggies, served hot with spicy chutney.",
+    //     image_url: "",
+    //     category: "Momo",
+    //     is_available: true,
+    //   },
+    {
+        name: "Chicken Momo",
+        price: 30,
+        description: "Juicy chicken-filled momos wrapped in thin dough, perfect with a tangy red chutney.",
+        image_url: "",
+        category: "Momo",
+        is_available: true,
+    },
+    {
+        name: "Fried Veg Momo",
+        price: 50,
+        description: "Crispy fried version of veg momos, with a flavorful veggie filling inside.",
+        image_url: "",
+        category: "Momo",
+        is_available: true,
+    },
+    {
+        name: "Fried Chicken Momo",
+        price: 60,
+        description: "Crisp outer shell with spicy chicken stuffing, served with a zesty dip.",
+        image_url: "",
+        category: "Momo",
+        is_available: true,
+    },
+    {
+        name: "Chilli Veg Momo",
+        price: 50,
+        description: "Veg momos tossed in a spicy Indo-Chinese sauce, full of bold flavors.",
+        image_url: "",
+        category: "Momo",
+        is_available: true,
+    },
+    {
+        name: "Chilli Chicken Momo",
+        price: 70,
+        description: "Chicken momos sautéed in spicy, tangy chilli sauce for an extra kick.",
+        image_url: "",
+        category: "Momo",
+        is_available: true,
+    },
+    {
+        name: "Veg Hakka Noodles",
+        price: 40,
+        description: "Stir-fried noodles with crunchy vegetables and classic Indo-Chinese seasoning.",
+        image_url: "",
+        category: "Noodles",
+        is_available: true,
+    },
+    {
+        name: "Egg Hakka Noodles",
+        price: 50,
+        description: "Hakka noodles stir-fried with egg, veggies, and savory sauces.",
+        image_url: "",
+        category: "Noodles",
+        is_available: true,
+    },
+    {
+        name: "Chicken Hakka Noodles",
+        price: 50,
+        description: "Flavour-packed noodles with chicken slices, veggies, and a smoky wok taste.",
+        image_url: "",
+        category: "Noodles",
+        is_available: true,
+    },
+    {
+        name: "Mix Hakka Noodles",
+        price: 60,
+        description: "A hearty combo of noodles, chicken, egg, and veggies stir-fried to perfection.",
+        image_url: "",
+        category: "Noodles",
+        is_available: true,
+    },
+    {
+        name: "Veg Roll",
+        price: 30,
+        description: "Soft wrap filled with spiced veggies, onions, and tangy sauces.",
+        image_url: "",
+        category: "Rolls",
+        is_available: true,
+    },
+    {
+        name: "Chicken Roll",
+        price: 50,
+        description: "Delicious roll with marinated chicken, veggies, and flavorful chutneys.",
+        image_url: "",
+        category: "Rolls",
+        is_available: true,
+    },
+    {
+        name: "Mixed Roll",
+        price: 60,
+        description: "A loaded wrap with chicken, egg, veggies, and a burst of spices.",
+        image_url: "",
+        category: "Rolls",
+        is_available: true,
+    },
+    {
+        name: "Chicken Pakoda",
+        price: 50,
+        description: "Crispy deep-fried chicken bites marinated in spices—perfect for snacking.",
+        image_url: "",
+        category: "Pakodas",
+        is_available: true,
+    },
+    {
+        name: "Chicken Lollipop",
+        price: 30,
+        description: "Drumette-style chicken, deep-fried and coated in spicy Indo-Chinese sauce.",
+        image_url: "",
+        category: "Pakodas",
+        is_available: true,
+    },
+    {
+        name: "Chicken Leg Piece",
+        price: 50,
+        description: "Spiced and fried chicken leg, crispy outside, juicy inside.",
+        image_url: "",
+        category: "Pakodas",
+        is_available: true,
+    },
+    {
+        name: "Veg Fried Rice",
+        price: 50,
+        description: "Fragrant rice stir-fried with mixed vegetables and subtle Chinese spices.",
+        image_url: "",
+        category: "Main Dish",
+        is_available: true,
+    },
+    {
+        name: "Egg Fried Rice",
+        price: 60,
+        description: "Fluffy fried rice mixed with scrambled eggs and seasoned to perfection.",
+        image_url: "",
+        category: "Main Dish",
+        is_available: true,
+    },
+    {
+        name: "Chicken Fried Rice",
+        price: 70,
+        description: "Savory fried rice with juicy chicken chunks and crispy vegetables.",
+        image_url: "",
+        category: "Main Dish",
+        is_available: true,
+    },
+    {
+        name: "Chicken Biryani",
+        price: 110,
+        description: "Aromatic basmati rice cooked with marinated chicken and traditional spices.",
+        image_url: "",
+        category: "Main Dish",
+        is_available: true,
+    },
+    {
+        name: "Chilli Chicken",
+        price: 60,
+        description: "Classic Indo-Chinese chilli chicken with bold, spicy, and tangy flavor.",
+        image_url: "",
+        category: "Main Dish",
+        is_available: true,
+    }
+]
+
+const { data, error } = await supabase.from('items').insert(items).select()
+
+console.log(data, error);

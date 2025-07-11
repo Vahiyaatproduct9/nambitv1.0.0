@@ -1,0 +1,53 @@
+.container {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .leftContainer {
+        display: flex;
+        align-items: center;
+
+        .title {
+            h1 {
+                font-weight: 700;
+                font-size: 2rem;
+                font-family: Ancizar Sans;
+            }
+
+            .subs {
+                font-family: Open Sans;
+                list-style: circle;
+                display: flex;
+                gap: 10px;
+            }
+        }
+
+        .logo {
+            display: flex;
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            background-color: red;
+        }
+
+    }
+
+    .cart {
+        position: absolute;
+        right: 20px;
+        top: auto;
+        height: 50px;
+        width: 50px;
+
+    }
+}

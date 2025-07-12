@@ -1,6 +1,6 @@
 import supabase from '../libs/supabaseClient';
 
-async function fetchItems(category: string) {
+export async function fetchItems(category: string) {
     if (category === 'all' || category === undefined || category === null) {
         const { data, error } = await supabase
             .from('items')
@@ -19,4 +19,10 @@ async function fetchItems(category: string) {
     return data;
 }
 
-export default fetchItems;
+export async function fetchHotItems() {
+    const { data, error } = await supabase
+        .from('hotitems')
+        .select('name, price, description, image_url')
+    if (error || !data) return error.message
+    return data
+}

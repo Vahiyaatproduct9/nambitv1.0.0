@@ -18,6 +18,7 @@
         flex-wrap: wrap;
         gap: 10px;
         padding: 0 10px;
+        justify-content: center;
 
         .itemsContainer {
             border-radius: 10px;
@@ -61,11 +62,14 @@
                         border-radius: 10px;
                         padding: 10px 20px;
                         background: orange;
+                        cursor: pointer;
 
                     }
+
+                    button:active {
+                        background: hsl(39, 100%, 60%);
+                    }
                 }
-
-
             }
         }
     }

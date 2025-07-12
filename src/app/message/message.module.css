@@ -1,0 +1,19 @@
+.container {
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    top: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Ancizar Sans;
+    font-size: 1.1rem;
+    font-weight: 600;
+}

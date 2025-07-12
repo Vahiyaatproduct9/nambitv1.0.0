@@ -7,6 +7,7 @@ import { haversine } from '../../../api/haversine'
 import { useRouter } from 'next/navigation'
 
 function AdditionalInfo() {
+    const router = useRouter()
     const [coords, setCoords] = useState<{ lat: number, long: number, acc: number } | null>(null)
     const [deliveryPossible, setDeliveryPossible] = useState(true)
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,9 +24,9 @@ function AdditionalInfo() {
             <Message color='green' time={5} message='Details saved successfully!' />
             if (localStorage.getItem('orders')) {
                 // If there are orders in localStorage, redirect to the orders page
-                useRouter().push('/orders');
+                router.push('/confirmorders');
             } else {
-                useRouter().push('/');
+                router.push('/');
             }
         }
         if (error) return <Message color='red' time={5} message='There was an error. Please try again!' />

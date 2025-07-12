@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
     return (
         <div className={css.container}>
-            <p>© 2023 Namaste Bites. All rights reserved.</p>
+            <p>© 2023 Namaste Bites. All rights reserved.<br /> Kalagachh Bus Stand</p>
         </div>
     )
 }

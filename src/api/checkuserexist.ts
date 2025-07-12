@@ -1,6 +1,6 @@
 import supabase from '../libs/supabaseClient'
 
-export async function orderbuttonpress(flattened: { name: string, price: number }[], totalPrice: number) {
+export async function checkUserExists() {
     const { data: authData, error: authError } = await supabase.auth.getUser()
     if (!authData.user) return 0
     const useremail = authData.user.email
@@ -13,12 +13,5 @@ export async function orderbuttonpress(flattened: { name: string, price: number 
             return 1 // User needs to fill additional info
         }
     }
-    const { data, error } = await supabase.from('orders').insert({
-        user_id: authData.user.id,
-        order: flattened,
-        price: totalPrice,
-        status: 'pending',
-    }).select()
-    if (!data || error) return error
-    return 3
+    return 3 // User exists and has all required info
 }

@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation'
 import Message from '../../message/message'
 
 function SignUp() {
+    const router = useRouter();
+    const [success, setSuccess] = React.useState(false);
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
@@ -17,17 +19,17 @@ function SignUp() {
             if (typeof email === 'string' && typeof pass2 === 'string' && typeof pass1 === 'string') {
                 const { data, error } = await signUp(email, pass1, pass2)
 
-                if (data) {
-                    useRouter().push('/auth/confirmationemail')
-                }
+                if (data && !error) {
+                    setSuccess(true)
+                    router.push('/auth/confirmationemail')
+                } return error
             }
         }
         signUpvar()
     }
     return (
         <div className={css.container}>
-
-            <Message color='orange' message='Please Check your Email to Confirm.' time={3} />
+            {success && <Message message='Please Check your Email to confirm!' color='green' time={3} />}
             <div className={css.body}>
                 <div className={css.title}>
                     <h1>Namaste Bites</h1>

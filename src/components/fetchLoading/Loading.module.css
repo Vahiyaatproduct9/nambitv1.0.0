@@ -1,0 +1,16 @@
+.container {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+
+    .box {
+        border-radius: 100%;
+        background: orange;
+        height: 50px;
+        width: 50px;
+    }
+}

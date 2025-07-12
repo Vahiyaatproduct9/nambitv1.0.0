@@ -2,34 +2,14 @@ import React, { useEffect, useState } from 'react'
 import css from './menu.module.css'
 import { fetchHotItems } from '../api/fetchItems'
 import Cart from '@/components/cart'
+import Loading from './fetchLoading/loading';
 
 function Menu() {
-    // const [items, setItems] = useState<{
-    //     id: number;
-    //     name: string;
-    //     description: string;
-    //     price: number;
-    //     image_url: string;
-    // }[]>([]);
-
-    // useEffect(() => {
-    //     const getItems = async () => {
-    //         const fetchedItems: {
-    //             id: number;
-    //             name: string;
-    //             description: string;
-    //             price: number;
-    //             image_url: string;
-    //         }[] = (await fetchItems('all')) || [];
-    //         setItems(fetchedItems);
-    //     };
-    //     getItems();
-    // }, []);
     const [hotItems, setHotItems] = useState<{ name: string; price: number; description: string; image_url: string; }[]>([]);
-
+    const [menuLoading, setMenuLoading] = useState(true)
     useEffect(() => {
         const getHotItems = async () => {
-            const items = await fetchHotItems();
+            const items = await fetchHotItems().finally(() => setMenuLoading(false));
             if (Array.isArray(items)) {
                 setHotItems(items);
             }
@@ -63,7 +43,7 @@ function Menu() {
                     </div>
                     <div className={css.subs}>
                         <span>₹{item.price}</span>
-                        {selected.amount === 0 ? (
+                        {menuLoading ? <Loading /> : selected.amount === 0 ? (
                             <button onClick={() => {
                                 setSelectedItems(prev => prev.map(it => it.name === item.name ? { ...it, price: item.price, amount: 1 } : it))
                             }}>+ Add</button>

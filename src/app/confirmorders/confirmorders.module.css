@@ -1,0 +1,108 @@
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f9f9f9;
+    height: 100dvh;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        position: fixed;
+        overflow: scroll;
+        top: 0;
+    }
+
+    .header {
+        width: 100%;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-family: Ancizar Sans;
+    }
+
+    .body {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        flex-direction: column;
+
+        .orderItem {
+            width: 100%;
+            min-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+
+            .itemDetails {
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .itemImage {
+                width: 100%;
+                max-width: 200px;
+                border-radius: 10px;
+                overflow: hidden;
+                height: fit-content;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .totalPrice {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .footer {
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        padding: 10px;
+        backdrop-filter: blur(5px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-width: 1px 0 0 0;
+        border-color: white;
+        border-style: solid;
+        align-items: center;
+
+        button {
+            width: 100%;
+            max-width: 900px;
+            padding: 10px;
+            background: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            color: white;
+            font-weight: 600;
+
+            &:hover {
+                background: darkorange;
+            }
+        }
+    }
+}

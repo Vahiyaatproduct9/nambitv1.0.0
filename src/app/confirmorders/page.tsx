@@ -60,7 +60,7 @@ function ConfirmOrders() {
                 <img src={itemPics?.[index]?.image_url || '/table.jpg'} alt={order.name} />
             </div>
             <div className={css.itemDetails}>
-                {order.name} - ₹{order.price}
+                <span>{order.name}</span> <span>₹{order.price}</span>
             </div>
 
         </div>

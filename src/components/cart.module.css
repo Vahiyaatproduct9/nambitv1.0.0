@@ -13,10 +13,18 @@
     justify-content: space-between;
 
     .leftContainer {
-        transform: translateX(40px);
         font-weight: 800;
         font-family: Open Sans, Ancizar Sans;
         font-size: 1rem;
+
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.5);
+        }
     }
 
     .rightContainer {

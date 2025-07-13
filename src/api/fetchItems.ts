@@ -18,6 +18,10 @@ export async function fetchItems(category: string) {
     }
     return data;
 }
+export async function fetchCategory() {
+    const { data, error } = await supabase.from('items').select('category')
+    return data
+}
 
 export async function fetchHotItems() {
     const { data, error } = await supabase

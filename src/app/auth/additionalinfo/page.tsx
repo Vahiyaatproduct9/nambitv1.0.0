@@ -40,7 +40,7 @@ function AdditionalInfo() {
             const { latitude, longitude, accuracy } = position.coords;
             setCoords({ lat: latitude, long: longitude, acc: accuracy })
         }, (error) => {
-            alert('cannot get location :(')
+            alert('Please enable Location access in your Browser!')
             const locationCheckbox = document.getElementById('location') as HTMLInputElement | null;
             if (locationCheckbox) {
                 locationCheckbox.checked = false;

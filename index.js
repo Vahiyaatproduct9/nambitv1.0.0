@@ -1,25 +1,26 @@
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-const hotitems = [{
-    name: "Egg Hakka Noodles",
-    price: 50,
-    description: "Hakka noodles stir-fried with egg, veggies, and savory sauces.",
-    image_url: "",
-},
-{
-    name: "Chicken Roll",
-    price: 50,
-    description: "Delicious roll with marinated chicken, veggies, and flavorful chutneys.",
-    image_url: "",
-},
-{
-    name: "Chicken Biryani",
-    price: 110,
-    description: "Aromatic basmati rice cooked with marinated chicken and traditional spices.",
-    image_url: "",
-}]
+// Load env vars
+import dotenv from 'dotenv';
+dotenv.config();
+console.log(process.env.SUPABASE_SERVICE_ROLE_KEY)
+import { createClient } from '@supabase/supabase-js';
 
-const { data, error } = await supabase.from('hotitems').insert(hotitems).select()
+// Pull from env
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
-console.log(data, error);
+// Example: Get all rows from "users" table
+async function testSupabase() {
+    const { data, error } = await supabase
+        .from('orders')
+        .select('*');
+
+    if (error) {
+        console.error('Error:', error);
+    } else {
+        console.log('Data:', data);
+    }
+}
+
+testSupabase();

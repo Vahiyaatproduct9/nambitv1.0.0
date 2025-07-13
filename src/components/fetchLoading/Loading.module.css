@@ -6,11 +6,12 @@
     align-items: center;
     gap: 10px;
     flex-direction: row;
+    padding: 40px 0;
 
     .box {
         border-radius: 100%;
         background: orange;
-        height: 50px;
-        width: 50px;
+        height: 30px;
+        width: 30px;
     }
 }

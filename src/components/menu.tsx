@@ -113,14 +113,14 @@ function Menu() {
 
         <div className={css.container}>
             <div className={css.title}>
-                <h1>Menu</h1> </div>
+                <h1>Today's HotList</h1> </div>
             <div className={css.items}>
                 {menuLoading ? <Loading /> : hotItemsMap}
             </div>
             {categoryItems.map(({ category, items }) => {
-                return (<div className={css.menuslider}>
+                return (<div key={category} className={css.menuslider}>
                     <div className={css.title}>{category}</div>
-                    <MenuSlider setMenuSliderData={setMenuSliderData} category={items} key={category} />
+                    <MenuSlider setMenuSliderData={setMenuSliderData} category={items} />
                 </div>)
             })}
         </div>

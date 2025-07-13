@@ -77,7 +77,7 @@ function ConfirmOrders() {
             <div className={css.totalPrice}>
                 <span>Total Price:</span><span>₹{totalPrice}</span>
             </div>
-            <p>Want to Change Location? <button style={{ color: 'blue' }} onClick={() => router.push('/additionalinfo')}>Change Location</button></p>
+            <p>Want to Change Location? <button style={{ color: 'blue' }} onClick={() => router.push('/auth/additionalinfo')}>Change Location</button></p>
             <p><b>Note : </b> We only allow <b>Cash On Delivery</b> at the moment!</p>
             <div className={css.footer}>
                 <button className={css.orderButton} onClick={() => placeOrder()}>Place Order</button>

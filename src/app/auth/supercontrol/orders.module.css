@@ -5,6 +5,8 @@
     flex-wrap: wrap;
     overflow-y: scroll;
     font-size: 0.8rem;
+    position: fixed;
+    padding-bottom: 120px;
 
     .orderContainer {
         width: 100%;

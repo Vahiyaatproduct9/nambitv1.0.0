@@ -5,7 +5,9 @@
     flex-wrap: wrap;
     font-size: 0.8rem;
     gap: 10px;
+    position: fixed;
     overflow-y: scroll;
+    padding-bottom: 120px;
 
     .bookingContainer {
         width: 100%;

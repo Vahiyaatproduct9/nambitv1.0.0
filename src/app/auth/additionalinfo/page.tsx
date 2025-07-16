@@ -12,6 +12,7 @@ function AdditionalInfo() {
     const [coords, setCoords] = useState<{ lat: number, long: number, acc: number } | null>(null)
     const [deliveryPossible, setDeliveryPossible] = useState(true)
     const [message, setMessage] = useState<{ color: 'red' | 'green', text: string } | null>(null)
+    const [isLocating, setIsLocating] = useState(false)
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -45,6 +46,7 @@ function AdditionalInfo() {
             alert("Your browser doesn't support location.")
             return
         }
+        setIsLocating(true)
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -53,6 +55,7 @@ function AdditionalInfo() {
 
                 const distance = haversine(latitude, longitude, 26.3820903, 88.3132877)
                 if (distance > 20) {
+                    setIsLocating(false)
                     setDeliveryPossible(false)
                     alert("You're outside our delivery range.")
                 } else {
@@ -63,6 +66,8 @@ function AdditionalInfo() {
                 alert("Please enable location access in your browser!")
                 const locationCheckbox = document.getElementById('location') as HTMLInputElement | null
                 if (locationCheckbox) locationCheckbox.checked = false
+                setIsLocating(false)
+                setDeliveryPossible(false)
             },
             {
                 enableHighAccuracy: true,
@@ -109,9 +114,9 @@ function AdditionalInfo() {
                             }} required />
                             <label htmlFor='location'>Enable GPS Location</label>
                         </section>
-
+                        {isLocating && <span>Locating...</span>}
                         <div>
-                            <input className={css.go} type='submit' value='GO!' disabled={!deliveryPossible} />
+                            <input className={css.go} type='submit' value='GO!' style={!deliveryPossible ? { background: 'rgba(100,100,100,0.6)' } : {}} disabled={!deliveryPossible} />
                             {!deliveryPossible && <span>Sorry, Delivery is not Possible</span>}
                         </div>
                     </form>

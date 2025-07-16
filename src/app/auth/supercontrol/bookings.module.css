@@ -1,0 +1,68 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    gap: 10px;
+    overflow-y: scroll;
+
+    .bookingContainer {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.5);
+
+        .bookingContainerHead {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            flex-direction: column;
+
+            .criteria {
+                justify-content: space-between;
+                display: flex;
+                width: 100%;
+                border-width: 0 0 1px 0;
+                border-style: solid;
+                border-color: white;
+                padding: 6px;
+                gap: 10px;
+
+                span>a {
+                    color: royalblue;
+                }
+
+                button {
+                    padding: 5px;
+                    border-radius: 10px;
+                    flex: 1;
+                    font-size: 1.05rem;
+                    font-family: Ancizar Sans;
+                    font-weight: 600;
+                    color: white;
+
+                    &:active {
+                        transform: translateY(3px);
+                        opacity: 0.8;
+                    }
+                }
+
+                button.accept {
+                    background: rgba(0, 128, 0, 0.9);
+                }
+
+                button.cancel {
+                    background: rgba(255, 0, 0, 0.9);
+
+                }
+            }
+
+            .suggestion {
+                max-width: 60%;
+            }
+        }
+    }
+
+}

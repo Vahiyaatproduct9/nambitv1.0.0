@@ -1,0 +1,65 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../../../public/gondola.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .title {
+        box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        padding: 10px;
+        font-size: 1.4rem;
+        font-family: Ancizar Sans;
+        font-weight: 600;
+        text-shadow: 0 3px 13px rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+
+        @media (max-width: 700px) {
+            font-size: 1.1rem;
+        }
+    }
+
+    .nav {
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-weight: 600;
+        font-family: Open Sans;
+        font-size: 1rem;
+        gap: 10px;
+
+        button {
+            padding: 10px 20px;
+            background: rgba(240, 128, 128, 0.219);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.1s;
+
+            &:hover {
+                transform: scale(1.04);
+            }
+
+            @media (max-width: 700px) {
+                flex-grow: 1;
+            }
+        }
+    }
+
+    .body {
+        height: fit-content;
+        width: 100%;
+        display: flex;
+    }
+}

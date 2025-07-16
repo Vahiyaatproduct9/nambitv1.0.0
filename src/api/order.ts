@@ -6,7 +6,7 @@ export async function orderbuttonpress(flattened: { name: string, price: number 
     const useremail = authData.user.email
     const { data: usersData, error: usersError } = await supabase
         .from('users')
-        .select('phone, latitude, longitude, accuracy')
+        .select('id, phone, latitude, longitude, accuracy')
         .eq('email', useremail)
     if (usersData !== null) {
         if (usersData[0].phone === null || usersData[0].latitude === null || usersData[0].longitude === null || usersData[0].accuracy === null) {
@@ -14,7 +14,7 @@ export async function orderbuttonpress(flattened: { name: string, price: number 
         }
     }
     const { data, error } = await supabase.from('orders').insert({
-        user_id: authData.user.id,
+        user_id: usersData && usersData[0].id,
         order: flattened,
         price: totalPrice,
         status: 'pending',

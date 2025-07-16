@@ -1,96 +1,78 @@
-import dotenv from 'dotenv';
-import nodemailer from 'nodemailer'
-dotenv.config();
 import { createClient } from '@supabase/supabase-js';
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || '', process.env.SUPABASE_SERVICE_ROLE_KEY || '')
+const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || '',
+    {
+        auth: {
+            autoRefreshToken: false,
+            persistSession: false
+        }
+    }
+)
 export async function seeOrders() {
+    const { data: ordersData, error: ordersError } = await supabase
+        .from('orders')
+        .select('*')
+        .in('status', ['pending'])
+    const user_ids = ordersData?.map(order => order.user_id);
+    const uniqueUserIds = [...new Set(user_ids)];
+    const { data: userData, error: userError } = await supabase.from('users').select('id, full_name, phone, address, created_at, latitude, longitude, accuracy').in('id', uniqueUserIds);
+    const sendData = ordersData?.map((item, i) => {
+        const user = userData?.find(user => user.id === item.user_id);
+        return { ...item, user: user || null }
+    })
+    return sendData
+}
+export async function orderDelivered(id: string) {
     const { data, error } = await supabase
         .from('orders')
-        .select('*');
-    if (error) {
-        console.error('Error:', error);
-    } else {
-        return data
-    }
+        .update({ status: 'accepted' })
+        .eq('id', id)
+}
+export async function orderCancelled(id: string) {
+    const { data, error } = await supabase
+        .from('orders')
+        .update({ status: 'deleted' })
+        .eq('id', id)
+    return { data, error }
 }
 export async function seeBookings() {
     const { data, error } = await supabase
         .from('bookings')
-        .select('*');
+        .select('*')
+        .in('status', ['pending', 'confirmed'])
     if (error) {
         console.error('Error:', error);
     } else {
         return data
     }
 }
-export async function orderDelivered(id: number) {
-    const { data, error } = await supabase
-        .from('orders')
-        .update({ status: 'delivered' })
-        .eq('id', id)
+export async function seeItems() {
+    const { data, error } = await supabase.from('items').select('*')
+    if (error || !data) return error.message
+    return data
 }
-export async function orderCancelled(id: number) {
-    const { data, error } = await supabase
-        .from('orders')
-        .update({ status: 'cancelled' })
-        .eq('id', id)
-    return { data, error }
-}
-
-export async function Email(email: string, condition: boolean, name: string, date: string, time: string) {
-    let confirmStatus = 'initiate';
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS,
-        },
-        tls: {
-            rejectUnauthorized: false,
-        }
-    });
-
-    try {
-        if (condition) {
-            await transporter.sendMail({
-                from: '"Namaste Bites"',
-                to: email,
-                subject: "Table Confirmed! | Namaste Bites",
-                text: "Your Table is Confirmed! | Namaste Bites",
-                html: `<h2 style='color: skyblue;'>CONFIRMED</h2>
-                <p>
-                Hello ${name},
-            <br>
-            Your table is confirmed for <b>${date}</b> at <b>${time}</b>. We look forward to serving you at Namaste Bites!
-            </p>`,
-            });
-            await supabase.from('bookings').update({ status: 'confirmed' }).eq('email', email).eq('date', date).eq('time', time)
-            confirmStatus = 'confirmation_sent';
-        }
-        else if (!condition) {
-            await transporter.sendMail({
-                from: '"Namaste Bites" <kishordebnath123123@gmail.com>',
-                to: email,
-                subject: "Booking Failed | Namaste Bites",
-                text: "Table Declined | Namaste Bites",
-                html: `<h2 style='color: red;'>DECLINED</h2>
-                <p>
-                Hello ${name},
-            <br>
-            It is with great regret that your table for <b>${date}</b> at <b>${time}</b> has been declined due to some reason from the manager's side.<br>
-            Please contact us for more information.
-            <br>
-            <a href='tel:+918167353739'>+91 8167353739</a>
-            </p>`,
-            });
-            await supabase.from('bookings').update({ status: 'rejected' }).eq('email', email).eq('date', date).eq('time', time)
-            confirmStatus = 'rejection_sent';
+export async function addItem(file: File | null, name: string, price: string, description: string, category: string) {
+    const filePath = `${file?.name}`
+    const image_url = `https://dxqespjfgbivjfzmflpi.supabase.co/storage/v1/object/public/items//${filePath}`
+    if (file) {
+        const { error: ImageError } = await supabase.storage.from('items').upload(filePath, file, {
+            cacheControl: '3600',
+            upsert: true,
+            contentType: file?.type,
+        })
+        if (ImageError) {
+            return ImageError
         }
     }
-    catch (error) {
-        confirmStatus = 'error' + error;
-    }
-    finally {
-        return confirmStatus;
-    }
+    const info = { name, price, description, image_url, category }
+    const { data, error } = await supabase.from('items').insert(info).select()
+    if (error || !data) return error.message
+    return data
 }
+export async function deleteItem(id: string, image_url: string) {
+    const filePath = image_url.split('/').pop()
+    const { error: fileError } = await supabase.storage.from('items').remove([filePath || ''])
+    const { data, error } = await supabase.from('items').delete().eq('id', id)
+    if (error || fileError || !data) return (error?.message, fileError?.message)
+} 

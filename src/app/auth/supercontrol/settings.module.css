@@ -1,0 +1,172 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    overflow-y: scroll;
+    padding-bottom: 130px;
+
+    .head {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-weight: 600;
+
+        }
+
+        .newcategory {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-direction: column;
+
+            .addItemBox {
+                width: 100%;
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 10px;
+                    align-items: center;
+                    justify-content: center;
+
+                    input {
+                        background: rgba(255, 255, 255, 0.5);
+                        border-radius: 10px;
+                        padding: 10px;
+                        border-width: 1px;
+                        width: 100%;
+                        max-width: 400px;
+                    }
+                }
+            }
+
+
+            /* input {
+                flex: 1;
+                padding: 10px;
+                font-size: 1.1rem;
+                font-family: Open Sans;
+                background: rgba(255, 255, 255, 0.5);
+                box-shadow: inset 0 0 13px 0px rgba(0, 0, 0, 0.2);
+                border-width: 2px;
+                border-radius: 10px;
+                border-style: solid;
+                border-color: white;
+                font-weight: 600;
+                outline-color: orange;
+            } */
+
+            button {
+                padding: 10px;
+                font-size: 1.1rem;
+                font-family: Open Sans;
+                font-family: Open Sans;
+                color: white;
+                border-radius: 10px;
+                min-width: 120px;
+                border-width: 1px;
+
+                &:active {
+                    transform: translateY(3px);
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .category {
+            width: 100%;
+            display: flex;
+            padding: 10px;
+            gap: 10px;
+            flex-direction: column;
+            font-weight: 600;
+
+            .itemContainer {
+                display: flex;
+                flex-direction: row;
+                overflow-x: scroll;
+                gap: 10px;
+
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    min-width: 280px;
+                    max-width: 300px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 10px;
+                    padding: 5px;
+
+                    .itemImage {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        height: 50%;
+                        border-radius: 10px;
+                        max-height: 200px;
+                    }
+
+                    .itemInfo {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        height: 50%;
+
+                        .itemInfoName {
+                            width: 100%;
+                            justify-content: space-between;
+                            display: flex;
+                            font-weight: 600;
+                            font-size: 1.1rem;
+                        }
+
+                        .itemInfoDesc {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            justify-content: space-between;
+                            flex: 1;
+
+
+                            div {
+                                flex: 1;
+                            }
+
+                            button {
+                                width: 100%;
+                                border-radius: 10px;
+                                background: red;
+                                padding: 10px;
+                                font-weight: 600;
+                                color: white;
+
+                                &:active {
+                                    transform: translateY(3px);
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

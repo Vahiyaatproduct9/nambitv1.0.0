@@ -37,6 +37,7 @@ function BookASeat() {
             phone: Number(phone),
             noOfGuest: Number(noOfGuests),
             date: new Date(date),
+            status: 'pending',
             time,
             suggestion
         };
